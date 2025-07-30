@@ -16,8 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
   providers: [MainRequestServiceService, RequestService]
 })
 export class ContactPageComponent {
-
-  imageUrl: string = ''
+      imageUrl:string=  "./assets/icons/person_2.png";
 
 
   contactList: any[] = [
