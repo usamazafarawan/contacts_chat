@@ -55,8 +55,7 @@ module.exports = {
         },
         spacing: {},
         fontFamily: {
-          "text-base-font-semibold": "Inter",
-          "sub-heading": "Epilogue",
+          lato: ['Lato', 'sans-serif'],
         },
         borderRadius: {
           lg: "18px",
