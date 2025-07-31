@@ -19,6 +19,9 @@ import { ContactDetailComponent } from '../contact-detail/contact-detail.compone
 export class ContactPageComponent {
   contactList: any[] = [];
   selectedId: number = -1;
+  selectedIndex: number = -1;
+  searchText = '';
+  filteredContacts:any[] = [];
 
   constructor(private router: Router, private route: ActivatedRoute, private fb: FormBuilder, private toastr: ToastrService, private requestService: RequestService) {
     this.getContactsList();
@@ -29,7 +32,8 @@ export class ContactPageComponent {
     this.requestService.getContactsList().subscribe({
       next: (res) => {
         this.contactList = res;
-        console.log(' this.contactList: ',  this.contactList);
+          this.filteredContacts = [...this.contactList];
+
       },
       error: (err) => {
         console.error('Error fetching contacts:', err);
@@ -39,8 +43,19 @@ export class ContactPageComponent {
   }
 
 
-  selectedContactId(id: any) {
-    this.selectedId = id;
+  selectedContactId(id: any,index:number) {
+      this.selectedId = id;
+      this.selectedIndex = index;        
+  }
 
+   filterContacts() {
+    const text = this.searchText.trim().toLowerCase();
+    if (text === '') {
+      this.filteredContacts = [...this.contactList];
+    } else {
+      this.filteredContacts = this.contactList.filter(contact =>
+        contact.name.toLowerCase().includes(text)
+      );
+    }
   }
 }

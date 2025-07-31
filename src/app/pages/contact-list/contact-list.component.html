@@ -20,7 +20,8 @@
         <hr class="border border-[#ECEEF5] my-2">
 
         <div class="p-6 flex flex-col">
-            <input type="text" placeholder="Search for a contact" class="font-lato font-normal text-[14px] leading-[21px] tracking-[0px] 
+            <input type="text" placeholder="Search for a contact" (input)="filterContacts()"   [(ngModel)]="searchText"
+ class="font-lato font-normal text-[14px] leading-[21px] tracking-[0px] 
          placeholder:text-[#8083A3] outline-none border-none bg-transparent focus:ring-0" />
 
             <div class="flex flex-row justify-between">
@@ -32,7 +33,7 @@
             </div>
 
 
-            <div (click)="selectedContactId(contact.id)" *ngFor="let contact of contactList; let i = index " class="flex flex-row justify-between mt-8 cursor-pointer hover:bg-[#F3F4F9]  transition-all duration-200 ease-in-out">
+            <div (click)="selectedContactId(contact.id,i)" *ngFor="let contact of filteredContacts; let i = index " class="flex flex-row justify-between mt-8 cursor-pointer hover:bg-[#F3F4F9]  transition-all duration-200 ease-in-out">
                 <div class="flex flex-row gap-6">
 
                     <div class="relative inline-block">
@@ -62,7 +63,7 @@
                     </div>
                 </div>
 
-                <div *ngIf="i == 2; else otherContent" class="flex flex-row gap-2">
+                <div *ngIf=" selectedIndex == i; else otherContent" class="flex flex-row gap-2">
                     <div
                         class="w-[36px] h-[36px] rounded-[10px] border border-[#ECEEF5] flex items-center justify-center bg-[#EDEDF7] cursor-pointer">
                         <img src="./assets/icons/chat_color_icon.png" alt="Icon" class="w-[10px] h-[10px]">
