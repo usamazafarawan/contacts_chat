@@ -8,14 +8,14 @@ import { MainRequestServiceService } from '../../core/services/main-request-serv
 import { HttpClientModule } from '@angular/common/http';
 
 @Component({
-  selector: 'app-login-page',
+  selector: 'app-contact-detail-page',
   standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule, HttpClientModule],
-  templateUrl: './login-page.component.html',
-  styleUrl: './login-page.component.scss',
+  templateUrl: './contact-detail.component.html',
+  styleUrl: './contact-detail.component.scss',
   providers: [MainRequestServiceService, RequestService]
 })
-export class ContactPageComponent {
+export class ContactDetailComponent {
       imageUrl:string=  "./assets/icons/person_2.png";
 
 

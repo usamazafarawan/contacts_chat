@@ -1,111 +1,4 @@
-<div class="w-full h-full flex flex-wrap flex-row">
 
-    <div class="w-[45%] bg-[#FAF9FF]">
-        <div class="flex flex-wrap flex-row p-6">
-
-            <div class="flex flex-row justify-between items-center w-full">
-                <div class="flex flex-row gap-3">
-                    <img src="./assets/icons/Menu.png" alt="Menu Icon" class="cursor-pointer w-[35px] h-[35px]">
-                    <h3 class="font-lato font-bold text-[20px] leading-[32px] tracking-[0px] text-[#1A1C1D]">
-                        Contacts
-                    </h3>
-                </div>
-
-                <div class="flex flex-row gap-1">
-                    <img src="./assets/icons/right_icon.png" alt="Right Icon" class="cursor-pointer w-[35px] h-[35px]">
-                    <img src="./assets/icons/left_icon.png" alt="Left Icon" class="cursor-pointer w-[35px] h-[35px]">
-                </div>
-            </div>
-
-        </div>
-
-        <hr class="border border-[#ECEEF5] my-2">
-
-        <div class="p-6 flex flex-col">
-            <input type="text" placeholder="Search for a contact" class="font-lato font-normal text-[14px] leading-[21px] tracking-[0px] 
-         placeholder:text-[#8083A3] outline-none border-none bg-transparent focus:ring-0" />
-
-            <div class="flex flex-row justify-between">
-                <span class="font-lato font-bold text-[16px] leading-[100%] tracking-[0px]">
-                    Name, email or phone number
-                </span>
-                <img src="./assets/icons/search_icon.png" alt="Filter Icon"
-                    class="cursor-pointer w-[15px] h-[15px] mr-5">
-            </div>
-
-
-            <div *ngFor="let contact of contactList; let i = index " class="flex flex-row justify-between mt-8">
-                <div class="flex flex-row gap-6">
-
-                    <div class="relative inline-block">
-                        <ng-container *ngIf="contact.imageUrl; else placeholder">
-                            <img [src]="contact.imageUrl" alt="Profile"
-                                class="w-[40px] h-[40px] rounded-[10px] object-cover">
-                        </ng-container>
-
-                        <ng-template #placeholder>
-                            <div class="w-[40px] h-[40px] rounded-[10px] bg-white"></div>
-                        </ng-template>
-
-                        <span class="absolute bottom-0 right-0 block w-[8px] h-[8px] rounded-full ring-2 ring-white"
-                            [style.backgroundColor]="contact.status">
-                        </span>
-
-                    </div>
-
-                    <div class="flex flex-col">
-                        <span class="font-lato font-bold text-[14px] leading-[21px] tracking-[0px] text-[#1A1C1D]">
-                            {{contact.name}}
-                        </span>
-
-                        <span class="font-lato font-normal text-[14px] leading-[21px] tracking-[0px] text-[#8083A3]">
-                            {{contact.title}}
-                        </span>
-                    </div>
-                </div>
-
-
-
-                <div *ngIf="i == 2; else otherContent" class="flex flex-row gap-2">
-                    <div
-                        class="w-[36px] h-[36px] rounded-[10px] border border-[#ECEEF5] flex items-center justify-center bg-[#EDEDF7]">
-                        <img src="./assets/icons/chat_color_icon.png" alt="Icon" class="w-[10px] h-[10px]">
-                    </div>
-                    <div
-                        class="w-[36px] h-[36px] rounded-[10px] border border-[#ECEEF5] flex items-center justify-center bg-[#EDEDF7]">
-                        <img src="./assets/icons/call_color_icon.png" alt="Icon" class="w-[10px] h-[10px]">
-                    </div>
-                    <div
-                        class="w-[36px] h-[36px] rounded-[10px] border border-[#ECEEF5] flex items-center justify-center bg-[#EDEDF7]">
-                        <img src="./assets/icons/menu_color_icon.png" alt="Icon">
-                    </div>
-                </div>
-
-                <ng-template #otherContent>
-                    <div class="flex flex-row gap-2">
-                        <div
-                            class="w-[36px] h-[36px] rounded-[10px] border border-[#ECEEF5] flex items-center justify-center bg-white">
-                            <img src="./assets/icons/chat_icon.png" alt="Icon" class="w-[10px] h-[10px]">
-                        </div>
-                        <div
-                            class="w-[36px] h-[36px] rounded-[10px] border border-[#ECEEF5] flex items-center justify-center bg-white">
-                            <img src="./assets/icons/call_icon.png" alt="Icon" class="w-[10px] h-[10px]">
-                        </div>
-                        <div
-                            class="w-[36px] h-[36px] rounded-[10px] border border-[#ECEEF5] flex items-center justify-center bg-white">
-                            <img src="./assets/icons/menu_icon.png" alt="Icon">
-                        </div>
-                    </div>
-                </ng-template>
-
-            </div>
-
-
-        </div>
-
-    </div>
-
-    <div class="w-[55%] bg-white">
 
         <div class="flex flex-wrap flex-row p-6 ml-30 mt-5 gap-5">
             <div>
@@ -119,7 +12,7 @@
                 <span class="font-lato font-normal text-[14px] leading-[21px] tracking-[0px] text-[#8083A3]"> UI/UX
                     Designer</span>
                 <div class="flex flex-row gap-3 mt-3">
-                    <button class="flex items-center justify-center w-[122px] h-[42px] rounded-[10px] bg-[#6B59CC]">
+                    <button class="flex items-center justify-center cursor-pointer w-[122px] h-[42px] rounded-[10px] bg-[#6B59CC]">
                         <img src="./assets/icons/msg_icon.png" alt="Icon" class="w-[13px] h-[13px] mr-2">
                         <span
                             class="font-lato font-normal text-[14px] leading-[100%] tracking-[0px] text-white">Message</span>
@@ -173,7 +66,7 @@
                 </div>
 
                 <button
-                    class="font-lato font-bold text-[12px] leading-[21px] tracking-[0px] text-center bg-[#F3F4F9] text-[#8083A3] px-3 py-1 mr-5 rounded-[6px]">
+                    class="font-lato font-bold text-[12px] leading-[21px] tracking-[0px] cursor-pointer text-center bg-[#F3F4F9] text-[#8083A3] px-3 py-1 mr-5 rounded-[6px]">
                     Primary
                 </button>
             </div>
@@ -227,7 +120,7 @@
                 </div>
 
                 <button
-                    class="font-lato font-bold text-[12px] leading-[21px] tracking-[0px] text-center bg-[#F3F4F9] text-[#8083A3] px-3 py-1 mr-5 rounded-[6px]">
+                    class="font-lato font-bold text-[12px] leading-[21px] tracking-[0px] cursor-pointer text-center bg-[#F3F4F9] text-[#8083A3] px-3 py-1 mr-5 rounded-[6px]">
                     Primary
                 </button>
             </div>
@@ -267,5 +160,4 @@
             </div>
 
         </div>
-    </div>
-</div>
+ 

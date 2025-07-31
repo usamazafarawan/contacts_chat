@@ -1,6 +1,5 @@
 import { Routes } from "@angular/router";
-import { MainLayoutComponent } from "./layout/main-layout/main-layout.component";
-import { ContactPageComponent } from "./pages/login-page/login-page.component";
+import { ContactPageComponent } from "./pages/contact-list/contact-list.component";
 export const routes: Routes = [
 
   {
