@@ -11,77 +11,36 @@ import { ContactDetailComponent } from '../contact-detail/contact-detail.compone
 @Component({
   selector: 'app-contacts-page',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, HttpClientModule,ContactDetailComponent],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, HttpClientModule, ContactDetailComponent],
   templateUrl: './contact-list.component.html',
   styleUrl: './contact-list.component.scss',
   providers: [MainRequestServiceService, RequestService]
 })
 export class ContactPageComponent {
-      imageUrl:string=  "./assets/icons/person_2.png";
+  contactList: any[] = [];
+  selectedId: number = -1;
 
-
-  contactList: any[] = [
-    {
-      imageUrl: '',
-      status: '#28C345',
-      name: 'Nicholas Gordon',
-      title: 'Developer'
-    },
-    {
-      imageUrl: "./assets/icons/person_1.png",
-      status: '#F6933E',
-      name: 'Bradley Malone',
-      title: 'Sales Manager'
-    },
-    {
-      imageUrl: "./assets/icons/person_2.png",
-      status: '#28C345',
-      name: 'Johanna Stevens',
-      title: 'Project Manager'
-    },
-    {
-      imageUrl: "./assets/icons/person_3.png",
-      status: '#F6933E',
-      name: 'Marvin Lambert',
-      title: 'Designer'
-    },
-    {
-      imageUrl: "",
-      status: '#F6933E',
-      name: 'Teresa Lloyd',
-      title: 'PR agent'
-    },
-
-    {
-      imageUrl: "./assets/icons/person_5.png",
-      status: '#F6933E',
-      name: 'Fred Haynes',
-      title: 'Support Team'
-    },
-
-    {
-      imageUrl: "./assets/icons/person_6.png",
-      status: '#F6933E',
-      name: 'Rose Peters',
-      title: 'Project Manager'
-    },
-
-    {
-      imageUrl: '',
-      status: '#28C345',
-      name: 'Brian Watson',
-      title: 'Developer'
-    },
-
-    {
-      imageUrl: '',
-      status: '#28C345',
-      name: 'Hettie Richardson',
-      title: 'Developer'
-    },
-
-  ]
   constructor(private router: Router, private route: ActivatedRoute, private fb: FormBuilder, private toastr: ToastrService, private requestService: RequestService) {
+    this.getContactsList();
   }
 
+
+  getContactsList() {
+    this.requestService.getContactsList().subscribe({
+      next: (res) => {
+        this.contactList = res;
+        console.log(' this.contactList: ',  this.contactList);
+      },
+      error: (err) => {
+        console.error('Error fetching contacts:', err);
+        this.toastr.error('Failed to load contacts');
+      }
+    });
+  }
+
+
+  selectedContactId(id: any) {
+    this.selectedId = id;
+
+  }
 }

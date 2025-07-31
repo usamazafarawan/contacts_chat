@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { EMPTY, Observable, catchError, of } from 'rxjs';
+import {  EMPTY, Observable, catchError } from 'rxjs';
 import { MainRequestServiceService } from './main-request-service.service';
 import { ToastrService } from 'ngx-toastr';
-import { ApiUrl } from '../../shared/resources/apiResource';
 
 @Injectable({
   providedIn: 'root'
@@ -13,14 +12,9 @@ export class RequestService {
     private toastr: ToastrService,
   ) { }
 
- 
-
-  /**
-   * SignUp Data 
-   */
-
-  logInInfo(loginInfo: any) {
-    return this.mainRequestService.addData(`${ApiUrl.adminLogInApi}`, loginInfo).pipe(catchError(err => {
+  getContactsList(): Observable<any> {
+    const mockUrl = 'https://688a8c212a52cabb9f4e7a83.mockapi.io/api/v1/contacts';
+    return this.mainRequestService.getData(`${mockUrl}`).pipe(catchError(err => {
       console.log("error", err)
       const message = err.error?.message || 'An error has occured.';
       this.toastr.error(message);
@@ -28,7 +22,14 @@ export class RequestService {
     }));
   }
 
-
-
+  getContactsDetailById(Id: number): Observable<any> {
+    const mockUrl = `https://688a8c212a52cabb9f4e7a83.mockapi.io/api/v1/contacts/${Id}`;
+    return this.mainRequestService.getData(`${mockUrl}`).pipe(catchError(err => {
+      console.log("error", err)
+      const message = err.error?.message || 'An error has occured.';
+      this.toastr.error(message);
+      return EMPTY;
+    }));
+  }
 
 } 

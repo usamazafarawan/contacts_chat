@@ -32,7 +32,7 @@
             </div>
 
 
-            <div *ngFor="let contact of contactList; let i = index " class="flex flex-row justify-between mt-8">
+            <div (click)="selectedContactId(contact.id)" *ngFor="let contact of contactList; let i = index " class="flex flex-row justify-between mt-8 cursor-pointer hover:bg-[#F3F4F9]  transition-all duration-200 ease-in-out">
                 <div class="flex flex-row gap-6">
 
                     <div class="relative inline-block">
@@ -98,6 +98,6 @@
     </div>
 
     <div class="w-[60%] bg-white">
-        <app-contact-detail-page></app-contact-detail-page>
+        <app-contact-detail-page [selectedContactId]="selectedId"></app-contact-detail-page>
     </div>
 </div>
